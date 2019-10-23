@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="show"> </div>
+    <div id="show"></div>
+
+    <script>
+        // 배열 선언 방법 1
+        var cars = ['Saab', 'Volvo', 'BMW', 'Benz'];
+        for (var i = 0; i < cars.length; i++) {
+            console.log(cars[i]);
+        }
+
+        // 배열 선언 방법 2
+        console.log("=============================================")
+        var flowers = new Array('sunflower', 'rose', 'lily', 'tulip');
+        var j = 0;
+        for (; j < flowers.length;) {
+            console.log(flowers[j++]);
+        }
+
+        // 배열 인덱스 0 의 값을 바꿈
+        flowers[0] = 'moonflower';
+
+
+        var text = "<ul>";
+        for (var i = 0; i < flowers.length;) {
+            text += "<li>" + flowers[i++] + "</li>";
+        }
+        text += "</ul>";
+        document.getElementById("show").innerHTML = text;
+        console.log("=============================================")
+
+        // new 연산자로 myArr 배열 생성 
+        var myArr = new Array();
+        console.log(Date());
+        function myFunc() {
+            return 3 + 5;
+        }
+        myArr[0] = Date();
+        myArr[1] = myFunc();
+        myArr[2] = cars;
+        for (var i = 0; i < myArr.length; i++) {
+            console.log(myArr[i]);
+        }
+        console.log(myArr[2][0]);
+        console.log("==============================================")
+        var carSort = cars.sort();   // 배열의 객체데이터를 오름차순으로 정렬하는 sort
+        console.log(carSort);
+
+        console.log("==============================================")
+        flowers.forEach(function(v, i)  {
+            console.log(v, i);
+        });
+
+        var tag = "<table border=1>";
+        tag += "<tr><th> index </th><th> values </th></tr>";
+
+        flowers.forEach((v, i) => {
+            console.log(v, i);
+            tag += "<tr><td>" + i + "</td><td>" + v + "</td></tr>";
+        });
+        tag += "</table>";
+        document.getElementById("arrow").innerHTML = tag;
+
+
+    </script>
+</body>
+
+</html>

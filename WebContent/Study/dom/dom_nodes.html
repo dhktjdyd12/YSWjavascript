@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="addRow()"> Click </button> 
+    <button onclick="adsF()"> Click2 </button>
+    <button onclick="rmove()"> remove Click </button>
+
+    <div id="div1">
+        <p id="p1"> This is Paragraph </p>
+        <p id="p2"> Another paragraph </p>
+    </div>
+
+    <button onclick="insertBefore1()"> InsertBefore </button>
+    <table id="tab" border="1">
+        <tr id="tr1"> 
+            <td> One </td>
+            <td> Two </td>
+        </tr>
+    </table>
+
+    <script>
+        function insertBefore1() {
+            var tr1 = document.getElementById("tr1");
+            var td1 = document.createElement("td");
+            td1.appendChild(document.createTextNode("Zero"));
+            tr1.insertBefore(td1, document.getElementsByTagName("td")[0]);
+            tr1.insertBefore(td1, td2);
+        }
+
+
+        
+        function rmove() {
+            var div1 = document.getElementById("div1");
+            var p2 = document.getElementById("p2");
+            div1.remove();        // div자체를 다제거하는 remove
+        }
+        function addRow() {
+            var elem = document.createElement("p");
+
+            var text = document.createTextNode("New paragraph");
+            elem.appendChild(text); // 부모.appendChild(자식);
+            elem.setAttribute("id", "p3");
+            elem.appendChild(text);
+            var div1 = document.getElementById("div1");
+            div1.appendChild(elem);
+        }
+
+        function adsF() {
+            var elem = document.createElement("p");  // createElemnet로 p태그를 추가
+
+            var text = document.createTextNode("wos"); // createTextNode로 내용을 추가
+            elem.appendChild(text); // 부모.appendChild(자식);
+                                    // 내용을 p태그에 넣음
+
+            var div1 = document.getElementById("div1");
+            div1.appendChild(elem);
+        }
+
+
+        
+    </script>
+</body>
+</html>

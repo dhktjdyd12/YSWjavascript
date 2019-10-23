@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       var fruits = ["Banana", "Orange", "Apple", "Mango"];
+       // pop은 뒤에서부터, shift는 앞에서부터 배열의 인덱스 값을 제거
+
+    //     var len = fruits.length;
+    //    for(var i=0; i<len; i++) {
+    //        console.log(fruits.join(","));  // fruits배열에 값이 4개 다 있음
+    //        fruits.pop();
+    //        fruits.shift();
+    //    }
+
+       // push, unshift
+       fruits.push("kiwi");
+       fruits.unshift("Strawberry");
+       console.log(fruits.join(","));
+
+       fruits[fruits.length] = "Melon"; 
+       fruits[fruits.length] = "Grape";
+       fruits[10] = "Lemon";
+       console.log(fruits.join(","));
+
+        // splice
+
+    </script>
+</body>
+</html>

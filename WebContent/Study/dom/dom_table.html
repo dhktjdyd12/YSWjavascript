@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body id="bdy">
+    <!-- 테이블 생성하는 버튼 --> 
+    <button onclick="createTable()"> 테이블만들기 </button> <br>
+    FName: <input type="text" id="firstName" name="firstName"> <br>
+    LName: <input type="text" id="lastName" name="lastName"> <br>
+    Saraly: <input type="text" id="Salary" name="salary"> <br>
+     
+    <br>
+    <!-- 생성하고 지우는 버튼 2개 -->
+	<button id="btn"> 행추가 </button> 
+    <button id="delete"> 행삭제 </button>
+
+    <script>
+        // 버튼을 변수에 담음
+      	var $btn = document.getElementById("btn");
+      	$btn.addEventListener("click", addData);  //addEventListener("click", 실행할 함수)
+          
+        // 버튼을 변수에 담음 
+		var $del = document.getElementById("delete");
+		$del.addEventListener("click", delData); //addEventListener("click", 실행할 함수)
+
+        // 행 지우는 함수 delData
+		function delData() {
+            var tass = document.getElementsByTagName("tr");
+            console.log(tass);
+
+            var taxs = document.getElementById("tb1");
+            taxs.removeChild(tass[1]);
+		}
+
+        // 행 추가하는 함수 addData
+      	function addData() {
+            console.log("start")
+            var fname = document.getElementById("firstName").value;
+            var lname = document.getElementById("lastName").value;
+            var salary = document.getElementById("Salary").value;
+            console.log(fname, lname, salary)
+
+			var td1 = document.createElement("td");
+			var tdVal1 = document.createTextNode(fname);
+            td1.appendChild(tdVal1);
+
+            var td2 = document.createElement("td");
+			var tdVal2 = document.createTextNode(lname);
+            td2.appendChild(tdVal2);
+
+            var td3 = document.createElement("td");
+			var tdVal3 = document.createTextNode(salary);
+            td3.appendChild(tdVal3);
+
+            // 행을 지우는 del이란 버튼을 만듬
+            var td4 = document.createElement("button");
+            var tdVal4 = document.createTextNode("del");
+            td4.appendChild(tdVal4);
+            td4.addEventListener("click", delFunc)    //addEventListener("click", 실행할 함수)
+
+            var rows = document.getElementsByTagName("tr");
+            var rowId = rows.length;
+            td4.setAttribute("id", rowId);
+
+            var tr1 = document.createElement("tr");
+            tr1.setAttribute("id", "tr" + rowId);
+            tr1.append(td1, td2, td3, td4);
+            // tr1.addEventListener("click", function() {console.log(this.ge)})
+
+			// tb1.append(tr1); 
+			var asd = document.getElementById("tb1");
+			asd.append(tr1);
+        }
+
+         // del버튼에 삭제하는 함수
+        function delFunc() {     
+        //     console.log(this.parentNode.getAttribute("id"));
+        //     var Id = document.getElementById("id");
+        //     var tdId = document.getElementById("id");
+            this.parentNode.remove();     // td의 부모를 삭제
+        }
+
+        // 테이블 생성하는 함수 createTable
+        function createTable() {
+            // $기호는 변수명에 쓸수 있는 기호로, 예약어일거같을때 써주면 편함
+            var $table = document.createElement("table");  
+            
+            // id의 속성을 tb1으로 border의 속성을 1로 주는법
+            $table.setAttribute( "id", "tb1");
+            $table.setAttribute( "border", "1" );
+
+            var th1 = document.createElement("th");
+            var var1 = document.createTextNode("FirstName");
+            th1.appendChild(var1);        // th1에 var1을 집어넣음
+
+			var th2 = document.createElement("th");
+			var var2 = document.createTextNode("LasttName");
+            th2.appendChild(var2);
+
+            var th3 = document.createElement("th");
+            var var3 = document.createTextNode("Salary");
+            th3.appendChild(var3);
+
+            var tr2 = document.createElement("tr");
+            tr2.append(th1, th2, th3);     // tr에 th들 쓴거를 집어넣음
+            $table.append(tr2);   // tr을 table에 넣어서 행만듬
+            document.getElementById("bdy").append($table);
+
+            var td1 = document.createElement("td");
+            var tdVal1 = document.createTextNode("Scott");
+            td1.appendChild(tdVal1);
+
+            var td2 = document.createElement("td");
+            var tdVal2 = document.createTextNode("tiger");
+            td2.appendChild(tdVal2);
+
+            var td3 = document.createElement("td");
+            var tdVal3 = document.createTextNode("5000");
+            td3.appendChild(tdVal3);
+
+            var tr1 = document.createElement("tr");
+            tr1.append(td1, td2, td3);
+            $table.append(tr1);
+
+            // document.getElementById("bdy").append($table);  // 테이블을 만든 걸 body에 집어넣음
+        }   
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="cal"></div>
+    
+    <script>
+    document.getElementById("cal").innerHTML = getCal(2019, 3);
+    console.log(document.getElementById("cal").innerHTML);
+
+    function getCal(y, m) {
+
+        var d = new Date(y, (m-1), 1) // Date() 현재 날짜 갖고옴,  2019, 3, 1 의 날짜
+        var ls = new Date(y, m, 0)    // 2019, 4, 0    3월 마지막날을 출력
+
+
+         // 일요일은 0 수요일은 3  토요일은 6까지
+        console.log(m + "월의 1일이 시작되는 위치:", d.getDay()); // 3월 1일, 요일정보
+        console.log(m + "월의 마지막날" + d.getDate());          // 3월 마지막날, 요일정보
+       
+       
+        var tag = "<h3>" + y + "년" + m + "월</h3>"
+
+        tag += "<table border='1'>"
+
+        tag += "<tr><th>일 </th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>";
+
+        tag += "<tr>"
+        for (var i=0; i<d.getDay(); i++ ) {
+            tag += "<td>"+  "*" + "</td>";
+        }
+
+        for (var v = 1; v<ls.getDate(); v++) {
+            tag += "<td>"+  v + "</td>";        
+            if((i+v) % 7 == 0) {
+                tag += "<tr> </tr>";
+            }
+        }
+        tag += "</tr></talbe>"
+        return tag;
+        document.getElementById("cal").innerHTML = tag;
+    }
+    </script>
+</body>
+</html>

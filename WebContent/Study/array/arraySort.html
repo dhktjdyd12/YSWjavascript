@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var fruits = ["Banana", "Orange", "Apple", "Mango"];
+        var newAry = fruits.sort();  // 오름차순 ,   fruits.reverse()는 인덱스번호 내림차순
+        console.log(newAry);
+
+        var points = [40, 100, 1, 5, 25, 10];
+        // var asd = points.reverse();
+        // console.log(asd);
+        console.log(points.sort((a, b) => {
+            return a - b;            // 앞뒤크기를 비교해 순서를 오름차로 정렬
+
+        }));
+
+        console.log(points.reverse((a, b) => {
+            return b - a;            // 앞뒤크기를 비교해 순서를 내림차로 정렬
+        }));
+
+        var car = [{ type: 'volve', year: 2016 }, { type: 'saab', year: 2015 }, { type : 'conata', year: 2018 }];
+        console.log("year순으로")
+        console.log(car.sort(function (a, b) {
+            return a.year - b.year;
+        }));
+
+        console.log("type 순으로")
+        console.log(car.sort(carSort));
+        function carSort(a, b) {
+            if (a.type.toUpperCase() > b.type.toUpperCase()) {
+                return 1;
+            } else if (a.type.toUpperCase() == b.type.toUpperCase()) {
+                return 0;
+            } else if (a.type.toUpperCase() < b.type.toUpperCase()) {
+                return -1;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

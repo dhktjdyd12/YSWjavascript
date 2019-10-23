@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery.min.js" > </script>
+    <script>
+        $(function() {
+            // $("button").eq(0).click(function(){
+            //     $("[href]").hide()
+            // })
+            
+            // $("button").eq(1).click(function(){
+            //     $("[href]").show()
+            // })
+            $("button:first").click(function() {
+                // $("a[target = '_blank']").hide();
+                $("a[href$ = 'com']").hide();
+            })
+        });
+    </script>
+</head>
+<body>
+    <button id="1"> hide </button>
+    <button id="2"> show </button>
+    <p> a Paragraph </p>
+    <p> another paragraph </p>
+    <p> <a href="https://www.Google.com" target="_blank"> Google </a> </p>
+    <p> <a href="https://www.naver.com" target="parent"> Naver </a> </p>
+</body>
+</html>

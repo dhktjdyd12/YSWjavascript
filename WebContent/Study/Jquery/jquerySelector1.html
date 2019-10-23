@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <script>
+        // $()는 제이쿼리란 의미, (안에 객체)
+        // ready()안에 실행구문
+        $(document).ready(function(){
+            // $("#tit")은 id값이 tit인걸 찾음
+            // class는 .으로 작성
+            var val1 = $("div > h1").eq(1).html();   // 제이쿼리는 배열을 eq()로 작성
+            // div>h1는 div밑에 자손인 h1을 의미
+            // console.log(val1);
+            var val2 = $("#divs").children().eq(0).html();
+            // console.log(var2);
+            // var val3 = $("#spn").nextAll();  // span의 뒤에있는걸 다 가져오는 nextAll()
+            var val3 = $("#spn").nextUntil("#h5"); // h5가 있는데 앞에껄 다 가져오는 nextUntil()
+            console.log(val3);
+
+
+        });             
+
+    </script>
+</head>
+<body>
+    <h1> 제이쿼리 </h1>
+    <h1 id="tit"> 아이디값 </h1>
+    <h1 class="tit"> 클래스값1 </h1>
+    <h1 class="tit"> 클래스값2 </h1>
+    <div id="divs">
+        <h1> 요소값 </h1>   <!-- 자식 -->
+        <span id="spn">  <h1> 요소값 2 </h1>  <!-- h1이 후손 --> </span> <!-- 자식 -->
+        <h1> 요소값3 </h1>  <!-- 자식 -->
+        <h1> 요소값4 </h1>  <!-- 자식 -->
+        <h1 id="h5"> 요소값5 </h1>
+        <h1> 요소값6 </h1>  <!-- 자식 -->
+    </div>  
+
+</body>
+</html>

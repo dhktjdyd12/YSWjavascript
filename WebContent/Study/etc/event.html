@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color: red;
+        width: 120px; height: 20px; padding: 40px;"> MouseOver </div>
+
+    <br>
+
+    <div onmousedown="mDown(this)" onmouseup="mUp(this)"
+        style="background-color: red; width: 120px; height: 20px; padding: 40px;"> Click </div>
+
+    <br>
+    Name: <input onfocus="onFocus()" onblur="onBlur()" type="text" id="fName">
+
+    <br>
+
+    <script>
+        function onFocus() {
+            var elem = document.getElementById('fName');
+            elem.style.background = "yellow";
+        }
+        function onBlur() {
+            var elem = document.getElementById('fName');
+            elem.style.background = "white"; 
+        }
+        function mDown(ev) {
+            ev.innerHTML = "Thank You";
+            ev.style.backgroundColor = "yellow";
+        }
+        function mUp(ev) {
+            ev.innerHTML = "MosueOver";
+            ev.style.backgroundColor = "red";
+        }
+        
+        function mOver(ev) {
+            console.log(ev);
+            ev.innerHTML = "Thank You";
+        }
+        
+        function mOut(ev) {
+            console.log(ev);
+            ev.innerHTML = "MosueOver";
+        }
+    </script>
+
+</body>
+
+</html>

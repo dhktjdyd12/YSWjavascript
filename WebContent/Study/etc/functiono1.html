@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="show1"></div>
+    <div id="show2"></div>
+    <script>
+        // 함수의 총합을 구하는 calSum
+        var result = calSum(1,4,2,43,23,92); // sum(int...num)  매개값을 다 넘겨줄떄 ...
+        function calSum() {
+            var len = arguments.length;   // 함수의 길이를 구하는 arguments 
+            var total = 0;
+            for(var i=0; i<len; i++){
+                total += arguments[i];
+            }
+            return total;
+        }
+        document.getElementById('show1').innerHTML = "합은: " + result;
+        
+
+        // 최댓값 구하는 함수 claMax
+        var max = calMax(1,4,2,43,23,92);
+        function calMax() {
+            var asd = arguments.length;
+            var max = 0;
+            var total = 0;
+            for(var i=0; i<len; i++) {
+                if(argument[i] < arguments[i+1]) {
+                    
+                } else {
+                    arguments[i];
+                }
+
+            }
+        }
+        document.getElementById('show2').innerHTML = "최대값은:"
+    
+    </script>
+
+</body>
+</html>

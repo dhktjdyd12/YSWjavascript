@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery.min.js"> </script>
+</head>
+<body id="das">
+    <button onclick="createTable()"> CreateTable </button>
+    <script>
+        function createTable() {
+            $("body table").remove();
+
+
+            var tabs = $("<table>");
+            tabs.attr ({ "id":"tb1", "border":"1"});
+            var tr, td1, td2, td3, td4;
+
+            // 0행
+            tr = $("<tr>").attr("align","center");
+            td1 = $("<td>").text("주소록");
+            tr.append(td1);
+            tabs.append(tr);
+
+            // 1행
+            td1 = $("<td>").text("이름");
+            td2 = $("<td>").text("나이");
+            td3 = $("<td>").text("전화번호");
+            btn = $("<button>").text("del");
+            td4 = $("<td>").html(btn.click(delFunc));
+            tr.append(td1, td2, td3, td4);
+            $("<tr>")
+            tabs.append(tr);
+
+
+            // 2행
+            td1 = $("<td>").text("홍길동");
+            td2 = $("<td>").text("35");
+            td3 = $("<td>").text("010-1111-1111");
+            btn = $("<button>").text("del");
+            td4 = $("<td>").html(btn.click(delFunc));
+            tr.append(td1, td2, td3, td4);
+            tabs.append(tr);
+
+
+            // 3행
+            td1 = $("<td>").text("김길동");
+            td2 = $("<td>").text("40");
+            td3 = $("<td>").text("010-2222-2222");
+            btn = $("<button>").text("del");
+            td4 = $("<td>").html(btn.click(delFunc));
+            tr.append(td1, td2, td3, td4);
+            tabs.append(tr);
+            $("body").append(tabs);          
+        }
+
+        function delFunc() {
+            $(this).parent().parent().remove();
+        }
+    </script>
+</body>
+</html>

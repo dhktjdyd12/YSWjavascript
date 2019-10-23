@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery.min.js"> </script>
+    <script> 
+        $(document).ready(function() {
+            // $("#btn1").click(function() {
+            //     $("h2").hide();
+            // })
+
+            // $("#btn2").click(function() {
+            //     $("p").hide();
+            // })
+
+            // $("body *").click(function(){
+            // $("p.int").click(function(){  // p안에 class가 int인거 다 적용
+            $("p").eq(0).click(function(){   // eq(0)-첫번째 p태그만 적용하겠다. 
+                console.log(this);
+                // $(this).hide();
+            })
+        }); 
+    </script>
+</head>
+<body>
+    <h2> a Heading </h2>
+    <p class="int"> a Paragraph </p>
+    <p>a Another </p>
+    <p class="int"> Another Heading </p>
+    <button id="btn1"> Click </button>
+    <button id="btn2"> Click </button>
+</body>
+</html>

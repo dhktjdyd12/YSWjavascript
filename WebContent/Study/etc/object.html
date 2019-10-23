@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var car = {        
+            // 속성(필드)
+            name : "sonata",
+            model : "hybrid",
+            weight : 900,
+            color : "white",
+
+            // 함수(메소드)
+            start: function() {
+                console.log(this.name + "starting. ");
+            },
+            brake: function() {
+                console.log(this.name + "braking. ");
+            },
+            fullName: function() {
+                return this.name + ", " + this.model + ", " + this.color;
+            }
+        }
+
+        // 함수호출
+        car.start();
+        car.brake();
+        console.log("this car : " + car.fullName() + ", whight: " + car["weight"]);
+        
+        // 자바스크립트의  확장 for문 
+        for(i in car) {          
+            console.log(typeof i, i, car[i]);
+        }
+
+        // 방법 2 비추
+        var car2 = new Object();
+        car2.name = "ks";
+        car2.color = "blue";
+        car2.fullName = function(){
+            return this.name + ", " + this.model + ", " + this.weight + ", " + this.color }
+        
+        console.log(this);
+        
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

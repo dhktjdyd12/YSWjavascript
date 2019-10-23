@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="createTable()"> d </button>
+    <p id="showXML"> </p>
+    <script>
+        var xhtp = new XMLHttpRequest();   // XML과 연결할 수 있는 XMLHttpRequest메소드
+        xhtp.onreadystatechange = function() {
+            if(xhtp.readyState == 4 && xhtp.status == 200) {
+                // console.log(this.responseText);
+                // JSON은 자바스크립트의 객체 표기법을 제한하여 만든 텍스트 기반의 데이터 교환 표준
+                var obj = JSON.parse(this.responseText);  
+                // responseText - 서버에 요청하여 응답으로 받은 데이터를 문자열로 반환
+                console.log(obj[0].first_name);
+                console.log(obj);
+                
+
+                // console.log("name =>", onj.name);
+                // console.log("age =>", obj.age);
+                // console.log("pets =>", obj.pets[0].animal, obj.pets[0].name);
+            }
+        }
+        xhtp.open("get", "MOCK_DATA.json");
+        xhtp.send();
+
+        function createTable(obj) {
+            console.log(obj);
+            var table = document.createElement("table");
+            table.setAttribute("border", 1);      // table의 속성 설정
+            for (var i=0; i < obj.length; i++) {
+                var tr = document.createElement("tr");
+                console.log(obj[i])
+                for (field in obj[i]) {
+                    var td = document.createElement("td");
+                    var val = document.createTextNode( obj[i][field] );
+                    td.appendChild(val);
+                    tr.appendChild(td);
+                } 
+                table.appendChild(tr);
+            }
+        }
+    </script>
+</body>
+</html>
