@@ -16,6 +16,7 @@
                     console.log(datas);
                     var ul = $("<ul>");
                     for(var i=0; i<datas.length; i++) {
+                    	ul.append($("<li>").text(datas[i].firstName));
                     	ul.append($("<li>").text(datas[i].lastName));
                     }
                     $("#show").html(ul);

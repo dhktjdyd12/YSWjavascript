@@ -14,34 +14,62 @@ public class EmpDAO {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	
+	public void updateEmp(Employee emp) {
+		conn = DAO.getConect();
+		String sql = "update emp_tamp set salary = ? where employee_id = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, emp.getSalary());
+			pstmt.setInt(2, emp.getEmployeeId());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건이 변경되었습니다." );
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-//	public void deleteEmployee(int empNo) {
-//		conn = DAO.getConect();
-//		String sql = "delete from emp_tamp where employee_id = ?";
-//		Employee del1= null;
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			
-//		}
-//	}
+	public void deleteEmployee(int empId) {
+		conn = DAO.getConect();
+		String sql = "delete from emp_tamp where employee_id = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, empId);
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건이 삭제됨");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	
 	public Employee getEmployee(int empId) {          // 사원이름 조회
 		conn = DAO.getConect();                                        // DB 연결해주는 것
-		String sql = "select * from employees where employee_id = ?";  // sql변수에 이 구문을 담음 
-		String sql1 = "{? = call get_dept_name(?)}";
+		String sql = "select * from emp_tamp where employee_id = ?";  // sql변수에 이 구문을 담음 
+//		String sql1 = "{? = call get_dept_name(?)}";
 		Employee emp = null;                                           // emp변수가 null이다.
 		try {  
 			pstmt = conn.prepareStatement(sql);                //DB에 위에서 입력받은 구문은 pstmt에 담는다.
 			pstmt.setInt(1, empId);                            //int타입으로  매개변수 첫번째값을 empId를 대입
 			rs = pstmt.executeQuery();                         // 위에 매개변수가 들어있는 쿼리문을 rs에  대입해 실행
 			
-			CallableStatement cstmt = conn.prepareCall(sql1);          // function을 호출
-			cstmt.registerOutParameter(1, java.sql.Types.VARCHAR);
-			cstmt.setInt(2, empId);
-			cstmt.execute();
-			String deptName = cstmt.getString(1);
+//			CallableStatement cstmt = conn.prepareCall(sql1);          // function을 호출
+//			cstmt.registerOutParameter(1, java.sql.Types.VARCHAR);
+//			cstmt.setInt(2, empId);
+//			cstmt.execute();
+//			String deptName = cstmt.getString(1);
 			
 			if(rs.next()) {
 				emp = new Employee();
@@ -52,49 +80,51 @@ public class EmpDAO {
 				emp.setHireDate(rs.getString("hire_date"));
 				emp.setJobId(rs.getString("job_id"));
 				emp.setSalary(rs.getInt("Salary"));
-				emp.setDeptName(deptName);
+//				emp.setDeptName(deptName);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return emp;			
 	}
-	public void insertEmpProc(Employee emp) {
-		conn = DAO.getConect();
-		String sql = "{call add_new_member(?,?,?,?,?,?)}";
-		try {
-			CallableStatement cstmt = conn.prepareCall(sql);
-			cstmt.setString(1, emp.getFirstName());
-			cstmt.setString(2, emp.getLastName());
-			cstmt.setString(3, emp.getJobId());
-			cstmt.setInt(4, emp.getSalary());
-			cstmt.setString(5, emp.getHireDate());
-			cstmt.setString(6, emp.getEmail());
-			cstmt.registerOutParameter(7, java.sql.Types.VARCHAR);  
-			cstmt.getString(7);
-			cstmt.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} 
-		}
-		
-	}
+//	public void insertEmpProc(Employee emp) {
+//		conn = DAO.getConect();
+//		String sql = 
+//		int rCnt = 0;
+//		try {
+//			CallableStatement cstmt = conn.prepareCall(sql);
+//			cstmt.setString(++rCnt, emp.getFirstName());
+//			cstmt.setString(++rCnt, emp.getLastName());
+//			cstmt.setString(++rCnt, emp.getEmail());
+//			cstmt.setString(++rCnt, emp.getJobId());
+//			cstmt.setString(++rCnt, emp.getHireDate());
+//			cstmt.setInt(++rCnt, emp.getSalary());
+//			cstmt.registerOutParameter(7, java.sql.Types.VARCHAR);  
+//			cstmt.getString(7);
+//			cstmt.execute();
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				conn.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			} 
+//		}
+//		
+//	}
 
 	
 	public void insertEmp(Employee emp) {                 // 직원 등록
 		conn = DAO.getConect();
-		String sql = "insert into employees(employee_id," + "first_name, last_name, email, job_id,"
-				+ "hire_date, salary) values (?,?,?,?,?,?,?)";
+		String sql = "insert into emp_tamp(employee_id, "
+			 	+ "first_name, last_name, email, job_id, hire_date, salary) "
+			 	+ " values (EMPLOYEES_SEQ.nextval, ?, ?, ?, ?, ?, ?)";
 		int rCnt = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(++rCnt, emp.getEmployeeId());
+//			pstmt.setInt(++rCnt, emp.getEmployeeId());
 			pstmt.setString(++rCnt, emp.getFirstName());
 			pstmt.setString(++rCnt, emp.getLastName());
 			pstmt.setString(++rCnt, emp.getEmail());
@@ -118,7 +148,7 @@ public class EmpDAO {
 	public List<Employee> getEmpList() {           // 직원 전체 조회
 		List<Employee> list = new ArrayList<>();
 		Connection conn = DAO.getConect();
-		String sql = "select * from employees";
+		String sql = "select * from emp_tamp";
 		Employee emp = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
